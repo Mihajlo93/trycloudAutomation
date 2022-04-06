@@ -1,5 +1,6 @@
 package com.trycloud.pages;
 
+import com.trycloud.utilities.ConfigurationReader;
 import com.trycloud.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,11 +23,23 @@ public class LoginPage {
     @FindBy(id = "submit-form")
     public  WebElement loginButton;
 
-    public void login(String username, String psw){
-        this.inputUsername.sendKeys(username);
-        this.inputPassword.sendKeys(psw);
+    @FindBy(xpath = "//p[@class='warning wrongPasswordMsg']")
+    public WebElement warningMessage;
+
+
+    public void login(){
+        inputUsername.sendKeys(ConfigurationReader.getProperty("username"));
+        inputPassword.sendKeys(ConfigurationReader.getProperty("password"));
+        loginButton.click();
+    }
+
+    public void login(String username,String password){
+
+        inputUsername.sendKeys(username);
+        inputPassword.sendKeys(password);
 
     }
+
 
     }
 
