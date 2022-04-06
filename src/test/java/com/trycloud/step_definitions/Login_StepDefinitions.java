@@ -1,6 +1,7 @@
 package com.trycloud.step_definitions;
 
 import com.trycloud.pages.LoginPage;
+import com.trycloud.utilities.ConfigurationReader;
 import com.trycloud.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -15,7 +16,7 @@ public class Login_StepDefinitions {
 
     @Given("user on the login page")
     public void user_on_the_login_page() {
-        Driver.getDriver().get("http://qa3.trycloud.net/index.php/login?clear=1");
+        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
     }
 
     @When("user use username {string} and passcode {string}")
